@@ -1,0 +1,36 @@
+syntax = 'proto3';
+
+//是否生成多个类
+option java_multiple_files = false;
+
+option java_package = "cn.xxstudy.news.proto";
+
+option java_outer_classname = "NewsProto";
+
+//.proto 包名
+package  news;
+
+service NewsService {
+  rpc list(NewsRequest) returns (NewsResponse);
+}
+
+message NewsRequest {
+  string date = 1;
+}
+
+message NewsResponse {
+  //repeated 说明是一个集合/数组。元素为News
+  repeated News news = 1;
+}
+
+message  News {
+  int32  id = 1;
+  string  title = 2;
+  string  content = 3;
+  int64  createTime = 4;
+
+}
+
+//执行 maven命令
+//1. protobuf:compile:生成target
+//2. protobuf:compile-custom
